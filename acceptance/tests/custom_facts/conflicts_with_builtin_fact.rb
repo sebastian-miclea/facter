@@ -17,7 +17,7 @@ CUSTOM_FACT
 
   def clear_custom_facts_on(host, custom_fact_dir)
     step "Clean-up the previous test's custom facts" do
-      on(agent, "rm -f #{custom_fact_dir}/*")
+      agent.rm_rf(custom_fact_dir)
     end
   end
 

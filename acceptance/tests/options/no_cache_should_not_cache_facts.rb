@@ -22,7 +22,7 @@ test_name "C99968: --no-cache command-line option causes facter to not cache fac
     cached_facts_dir = get_cached_facts_dir(agent['platform'], kernel_version)
     cached_fact_file = File.join(cached_facts_dir, cached_fact_name)
 
-    on(agent, "rm -f '#{cached_fact_file}'", :acceptable_exit_codes => [0, 1])
+    agent.rm_rf(cached_fact_file)
 
     teardown do
       agent.rm_rf(config_dir)

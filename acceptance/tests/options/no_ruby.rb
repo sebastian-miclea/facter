@@ -32,7 +32,7 @@ EOM
         create_remote_file(agent, custom_fact, content)
 
         teardown do
-          on(agent, "rm -f '#{custom_fact}'")
+          agent.rm_rf(custom_fact)
         end
 
         on(agent, facter('--no-ruby custom_fact', :environment => { 'FACTERLIB' => custom_dir })) do

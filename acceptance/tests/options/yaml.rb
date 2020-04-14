@@ -25,7 +25,7 @@ EOM
       on(agent, "chmod +x '#{custom_fact}'")
 
       teardown do
-        on(agent, "rm -f '#{custom_fact}'")
+        agent.rm_rf(custom_fact)
       end
 
       step "Agent #{agent}: retrieve output using the --yaml option" do

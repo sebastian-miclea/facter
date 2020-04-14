@@ -16,7 +16,7 @@ test_name "C87571: facter resolves facts in the default facts.d directory" do
     content = external_fact_content(agent['platform'], 'external_fact', 'external_value')
 
     teardown do
-      on(agent, "rm -f '#{fact_file}'")
+      agent.rm_rf(fact_file)
     end
 
     step "Agent #{agent}: setup default external facts directory and fact" do

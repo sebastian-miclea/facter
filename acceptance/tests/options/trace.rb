@@ -23,7 +23,7 @@ EOM
       on(agent, "chmod +x '#{custom_fact}'")
 
       teardown do
-        on(agent, "rm -f '#{custom_fact}'")
+        agent.rm_rf(custom_fact)
       end
 
       step "--trace option should provide a backtrace for a custom fact with errors" do

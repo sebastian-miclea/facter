@@ -23,7 +23,7 @@ EOM
     end
 
     teardown do
-      on(agent, "rm -f '#{ext_fact}'")
+      agent.rm_rf(ext_fact)
     end
 
     step "Agent #{agent}: create facts.d directory and fact" do
