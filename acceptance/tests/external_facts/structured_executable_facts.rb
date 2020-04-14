@@ -85,7 +85,7 @@ EOM
     end
 
     teardown do
-      on(agent, "rm -rf '#{factsd}'")
+      agent.rm_rf(factsd)
     end
 
     step "Agent #{agent}: create an executable yaml fact in default facts.d" do

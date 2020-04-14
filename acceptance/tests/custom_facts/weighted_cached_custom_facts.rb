@@ -59,9 +59,9 @@ test_name 'ttls configured weighted custom facts files creates cache file and re
     end
 
     teardown do
-      on(agent, "rm -rf '#{fact_dir}'")
-      on(agent, "rm -rf #{cache_folder}/*")
-      on(agent, "rm -rf #{config_dir}/facter.conf")
+      agent.rm_rf(fact_dir)
+      agent.rm_rf(cache_folder)
+      agent.rm_rf(config_dir)
     end
 
     step "should log that it creates cache file and it caches custom facts found in facter.conf with the highest weight" do

@@ -28,7 +28,7 @@ EOM
       create_remote_file(agent, config_file, config)
 
       teardown do
-        on(agent, "rm -rf '#{config_dir}'", :acceptable_exit_codes => [0,1])
+        agent.rm_rf(config_dir)
       end
 
       step "no-ruby option should disable custom facts" do
@@ -39,7 +39,7 @@ EOM
           create_remote_file(agent, custom_fact, custom_fact_content)
 
           teardown do
-            on(agent, "rm -rf '#{custom_dir}'", :acceptable_exit_codes => [0,1])
+            agent.rm_rf(custom_dir)
           end
 
           on(agent, facter("custom_fact", :environment => { 'FACTERLIB' => custom_dir })) do |facter_output|

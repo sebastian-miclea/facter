@@ -13,7 +13,8 @@ test_name "C99970: the `--list-cache-groups` command line flag prints available 
     etc_factsd_path = "#{etc_factsd_dir}/#{filename}"
 
     teardown do
-      on(agent, "rm -rf '#{external_dir}' '#{etc_factsd_path}'")
+      agent.rm_rf(external_dir)
+      agent.rm_rf(etc_factsd_path)
     end
 
     step "the various cache groups should be listed" do
@@ -47,7 +48,7 @@ test_name "C99970: the `--list-cache-groups` command line flag prints available 
         assert_match(/#{external_filename}.json/, facter_output.stdout, "external facts json files should be listed as cacheable")
         assert_match(/#{external_filename}.yaml/, facter_output.stdout, "external facts yaml files should be listed as cacheable")
       end
-      on(agent, "rm -rf '#{external_dir}'")
+      agent.rm_rf(external_dir)
     end
 
     step "external facts groups should be listed only without --no-external-facts" do
@@ -59,7 +60,7 @@ test_name "C99970: the `--list-cache-groups` command line flag prints available 
       on(agent, facter("--list-cache-groups --no-external-facts")) do |facter_output|
         assert_no_match(/#{filename}/, facter_output.stdout, "external facts script files should now be listed as cacheable when --no-external-facts is used")
       end
-      on(agent, "rm -f '#{etc_factsd_path}'")
+      agent.rm_rf(etc_factsd_path)
     end
   end
 end

@@ -20,7 +20,7 @@ EOM
     config_file = File.join(config_dir, "facter.conf")
 
     teardown do
-      on(agent, "rm -rf '#{config_dir}'", :acceptable_exit_codes => [0, 1])
+      agent.rm_rf(config_dir)
     end
 
     step "Agent #{agent}: create config file in default location" do

@@ -28,11 +28,12 @@ EOM
       create_remote_file(agent, facter_conf_default_path, config)
 
       teardown do
-        on(agent, "rm -rf '#{cached_facts_dir}' '#{facter_conf_default_dir}'", :acceptable_exit_codes => [0, 1])
+        agent.rm_rf(facter_conf_default_dir)
+        agent.rm_rf(cached_facts_dir)
       end
 
       step "should create a JSON file for a fact that is to be cached" do
-        on(agent, "rm -rf '#{cached_facts_dir}'", :acceptable_exit_codes => [0, 1])
+        agent.rm_rf(cached_facts_dir)
         on(agent, puppet("facts --debug")) do |pupppet_fact_output|
           assert_match(/caching values for .+ facts/, pupppet_fact_output.stdout, "Expected debug message to state that values will be cached")
         end

@@ -13,7 +13,7 @@ test_name "C100036: when run from puppet facts, facts can be blocked via a list 
       facter_conf_default_path = File.join(facter_conf_default_dir, "facter.conf")
 
       teardown do
-        on(agent, "rm -rf '#{facter_conf_default_dir}'", :acceptable_exit_codes => [0, 1])
+        agent.rm_rf(facter_conf_default_dir)
       end
 
       step "Agent #{agent}: create default config file" do

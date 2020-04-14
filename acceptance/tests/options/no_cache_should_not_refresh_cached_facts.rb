@@ -30,8 +30,8 @@ FILE
     cached_fact_file = File.join(cached_facts_dir, cached_fact_name)
 
     teardown do
-      on(agent, "rm -rf '#{config_dir}'", :acceptable_exit_codes => [0, 1])
-      on(agent, "rm -rf '#{cached_facts_dir}'", :acceptable_exit_codes => [0, 1])
+      agent.rm_rf(config_dir)
+      agent.rm_rf(cached_facts_dir)
     end
 
     step "Agent #{agent}: create config file in default location" do
@@ -41,7 +41,7 @@ FILE
 
     step "facter should not refresh an expired cache when --no-cache is specified" do
       # clear the fact cache
-      on(agent, "rm -rf '#{cached_facts_dir}'", :acceptable_exit_codes => [0, 1])
+      agent.rm_rf(cached_facts_dir)
 
       # run once to cache the uptime fact
       on(agent, facter(""))

@@ -15,7 +15,7 @@ test_name "C99961: external fact command line option --no-external-facts does no
       on(agent, "chmod +x '#{external_fact}'")
 
       teardown do
-        on(agent, "rm -rf '#{external_dir}'")
+        agent.rm_rf(external_dir)
       end
 
       step "Agent #{agent}: --no-external-facts option should not load external facts" do

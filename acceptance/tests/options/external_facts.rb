@@ -15,7 +15,7 @@ test_name "C99974: external fact commandline options --external-dir resolves an 
       on(agent, "chmod +x '#{external_fact}'")
 
       teardown do
-        on(agent, "rm -rf '#{external_dir}'")
+        agent.rm_rf(external_dir)
       end
 
       step "Agent #{agent}: resolve a fact from each specified --external_dir option" do

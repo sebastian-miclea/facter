@@ -34,12 +34,13 @@ EOM
       create_remote_file(agent, facter_conf_default_path, config)
 
       teardown do
-        on(agent, "rm -rf '#{cached_facts_dir}' '#{facter_conf_default_dir}'", :acceptable_exit_codes => [0, 1])
+        agent.rm_rf(cached_facts_dir)
+        agent.rm_rf(facter_conf_default_dir)
       end
 
       step "should read from a cached JSON file for a fact that has been cached" do
         step "call puppet facts to setup the cached fact" do
-          on(agent, "rm -rf '#{cached_facts_dir}'", :acceptable_exit_codes => [0, 1])
+          agent.rm_rf(cached_facts_dir)
           on(agent, puppet("facts"))
           create_remote_file(agent, cached_fact_file, cached_fact_content)
         end

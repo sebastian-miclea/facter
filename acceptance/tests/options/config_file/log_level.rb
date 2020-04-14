@@ -21,7 +21,7 @@ EOM
       create_remote_file(agent, config_file, config)
 
       teardown do
-        on(agent, "rm -rf '#{config_dir}'", :acceptable_exit_codes => [0, 1])
+        agent.rm_rf(config_dir)
       end
 
       step "log-level set to debug should print DEBUG output to stderr" do

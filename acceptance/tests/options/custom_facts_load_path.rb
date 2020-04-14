@@ -30,7 +30,7 @@ EOM
       create_remote_file(agent, custom_fact, content)
 
       teardown do
-        on(agent, "rm -rf '#{load_path_facter_dir}'")
+        agent.rm_rf(load_path_facter_dir)
       end
 
       step("Agent #{agent}: resolve the custom fact that is in a facter directory on the $LOAD_PATH")

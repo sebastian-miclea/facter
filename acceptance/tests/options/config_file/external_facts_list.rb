@@ -28,7 +28,9 @@ EOM
       create_remote_file(agent, config_file, config_content)
 
       teardown do
-        on(agent, "rm -rf '#{external_dir_1}' '#{external_dir_2}' '#{config_dir}'")
+        agent.rm_rf(external_dir_1)
+        agent.rm_rf(external_dir_2)
+        agent.rm_rf(config_dir)
       end
 
       step "Agent #{agent}: resolve a fact from each configured external-dir path" do

@@ -25,7 +25,8 @@ EOM
 
 
       teardown do
-        on(agent, "rm -rf '#{external_dir}' '#{config_dir}'")
+        agent.rm_rf(external_dir)
+        agent.rm_rf(config_dir)
       end
 
       step "Agent #{agent}: --no-external-facts option should not load external facts" do

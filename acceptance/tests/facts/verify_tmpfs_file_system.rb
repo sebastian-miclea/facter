@@ -33,7 +33,8 @@ test_name 'C98163: mountpoints fact should show mounts on tmpfs' do
 
     teardown do
       on(agent, "umount #{mount_point}")
-      on(agent, "rm -rf #{mount_point} #{manifest_dir}")
+      agent.rm_rf(mount_point)
+      agent.rm_rf(manifest_dir)
     end
 
     step "Apply the manifest to mount directory '#{mount_point}'" do

@@ -34,7 +34,8 @@ EOM
       create_remote_file(agent, config_file, config)
 
       teardown do
-        on(agent, "rm -rf '#{custom_dir}' '#{config_dir}'", :acceptable_exit_codes => [0, 1])
+        agent.rm_rf(custom_dir)
+        agent.rm_rf(config_dir)
       end
 
       step "trace setting should provide a backtrace for a custom fact with errors" do

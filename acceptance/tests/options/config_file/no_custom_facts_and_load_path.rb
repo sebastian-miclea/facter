@@ -36,7 +36,8 @@ EOM
       create_remote_file(agent, config_file, config_content)
 
       teardown do
-        on(agent, "rm -rf '#{load_path_facter_dir}' '#{config_dir}'")
+        agent.rm_rf(load_path_facter_dir)
+        agent.rm_rf(config_dir)
       end
 
       step("Agent #{agent}: using config no-custom-facts : true should not resolve facts in facter directories on the $LOAD_PATH") do

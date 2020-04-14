@@ -20,7 +20,8 @@ test_name "C99998: external fact commandline option --external-dir can be specif
       on(agent, "chmod +x '#{external_fact_1}' '#{external_fact_2}'")
 
       teardown do
-        on(agent, "rm -rf '#{external_dir_1}' '#{external_dir_2}'")
+        agent.rm_rf(external_dir_1)
+        agent.rm_rf(external_dir_2)
       end
 
       step "Agent #{agent}: resolve a fact from each specified --external_dir option" do

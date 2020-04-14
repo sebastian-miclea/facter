@@ -25,8 +25,8 @@ test_name "C99968: --no-cache command-line option causes facter to not cache fac
     on(agent, "rm -f '#{cached_fact_file}'", :acceptable_exit_codes => [0, 1])
 
     teardown do
-      on(agent, "rm -rf '#{config_dir}'", :acceptable_exit_codes => [0, 1])
-      on(agent, "rm -rf '#{cached_facts_dir}'", :acceptable_exit_codes => [0, 1])
+      agent.rm_rf(config_dir)
+      agent.rm_rf(cached_facts_dir)
     end
 
     step "Agent #{agent}: create config file in default location" do
