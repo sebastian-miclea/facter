@@ -34,7 +34,7 @@ test_name "C59201: Fact directory precedence and resolution order for facts" do
     # ensure the fact directory we want to use exists
     step "Agent #{agent}: create facts directory (#{etc_puppetlabs_factsd_dir})" do
       on(agent, "rm -rf '#{etc_puppetlabs_factsd_dir}'")
-      on(agent, "mkdir -p '#{etc_puppetlabs_factsd_dir}'")
+      agent.mkdir_p(etc_puppetlabs_factsd_dir)
     end
 
     # A fact in the etc_puppetlabs_factsd_dir directory should resolve to the fact
@@ -53,7 +53,7 @@ test_name "C59201: Fact directory precedence and resolution order for facts" do
     # ensure the fact directory we want to use exists
     step "Agent #{agent}: create facts directory (#{etc_factsd_dir})" do
       on(agent, "rm -rf '#{etc_factsd_dir}'")
-      on(agent, "mkdir -p '#{etc_factsd_dir}'")
+      agent.mkdir_p(etc_factsd_dir)
     end
 
     # A fact in the etc_factsd_dir directory should resolve to the fact
@@ -72,7 +72,7 @@ test_name "C59201: Fact directory precedence and resolution order for facts" do
     # ensure the fact directory we want to use exists
     step "Agent #{agent}: create facts directory (#{factsd_dir})" do
       on(agent, "rm -rf '#{factsd_dir}'")
-      on(agent, "mkdir -p '#{factsd_dir}'")
+      agent.mkdir_p(factsd_dir)
     end
 
     # A fact in the factsd_dir directory should resolve to the fact

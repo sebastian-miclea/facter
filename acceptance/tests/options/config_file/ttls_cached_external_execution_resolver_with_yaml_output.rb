@@ -42,7 +42,7 @@ EOM
       cached_fact_file = File.join(cached_facts_dir, "#{external_cachegroup}#{ext}")
 
       # Setup facter conf
-      on(agent, "mkdir -p '#{config_dir}'")
+      agent.mkdir_p(config_dir)
       cached_fact_content = <<EOM
 {
   "#{cached_fact_name}": "#{cached_fact_value}"

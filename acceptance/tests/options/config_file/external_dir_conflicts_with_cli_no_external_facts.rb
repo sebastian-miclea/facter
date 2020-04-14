@@ -24,7 +24,7 @@ EOM
     end
 
     step "Agent #{agent}: create config file in default location" do
-      on(agent, "mkdir -p '#{config_dir}'")
+      agent.mkdir_p(config_dir)
       create_remote_file(agent, config_file, config)
     end
 

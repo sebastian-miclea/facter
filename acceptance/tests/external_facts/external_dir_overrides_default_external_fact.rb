@@ -19,7 +19,7 @@ test_name "C100154: --external-dir fact overrides fact in default facts.d direct
     end
 
     step "Agent #{agent}: setup default external facts directories and the test facts" do
-      on(agent, "mkdir -p '#{factsd}'")
+      agent.mkdir_p(factsd)
       create_remote_file(agent, fact_file, content)
       create_remote_file(agent, override_fact_file, override_content)
       on(agent, "chmod +x '#{fact_file}' '#{override_fact_file}'")

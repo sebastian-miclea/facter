@@ -11,7 +11,7 @@ test_name "C100123: --no-cache command-line option does not load facts from the 
   cached_fact_name = "uptime"
   bad_cached_fact_value = "CACHED_FACT_VALUE"
   bad_cached_content = <<EOM
-{ 
+{
   "#{cached_fact_name}": "fake #{bad_cached_fact_value}"
 }
 EOM
@@ -36,7 +36,7 @@ EOM
     end
 
     step "Agent #{agent}: create config file in default location" do
-      on(agent, "mkdir -p '#{config_dir}'")
+      agent.mkdir_p(config_dir)
       create_remote_file(agent, config_file, config)
     end
 

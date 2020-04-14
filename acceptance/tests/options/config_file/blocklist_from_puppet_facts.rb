@@ -18,7 +18,7 @@ test_name "C100036: when run from puppet facts, facts can be blocked via a list 
 
       step "Agent #{agent}: create default config file" do
         # create the directories
-        on(agent, "mkdir -p '#{facter_conf_default_dir}'")
+        agent.mkdir_p(facter_conf_default_dir)
         create_remote_file(agent, facter_conf_default_path, <<-FILE)
         facts : { blocklist : [ "file system", "EC2" ] }
         FILE

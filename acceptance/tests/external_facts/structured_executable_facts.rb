@@ -81,7 +81,7 @@ EOM
     end
 
     step "Agent #{agent}: setup default external facts directory (facts.d)" do
-      on(agent, "mkdir -p '#{factsd}'")
+      agent.mkdir_p(factsd)
     end
 
     teardown do

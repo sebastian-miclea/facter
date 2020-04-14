@@ -24,7 +24,7 @@ EOM
       cached_facts_dir = get_cached_facts_dir(agent['platform'], on(agent, facter('kernelmajversion')).stdout.chomp.to_f)
       cached_fact_file = File.join(cached_facts_dir, cached_factname)
 
-      on(agent, "mkdir -p '#{facter_conf_default_dir}'")
+      agent.mkdir_p(facter_conf_default_dir)
       create_remote_file(agent, facter_conf_default_path, config)
 
       teardown do

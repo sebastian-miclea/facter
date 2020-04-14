@@ -22,7 +22,7 @@ EOM
     step("Agent #{agent}: determine the load path and create a custom facter directory on it and a config file") do
       ruby_path = on(agent, "#{ruby_command(agent)} -e 'puts $LOAD_PATH[0]'").stdout.chomp
       load_path_facter_dir = File.join(ruby_path, 'facter')
-      on(agent, "mkdir -p \"#{load_path_facter_dir}\"")
+      agent.mkdir_p(load_path_facter_dir)
       custom_fact = File.join(load_path_facter_dir, 'custom_fact.rb')
       create_remote_file(agent, custom_fact, content)
 

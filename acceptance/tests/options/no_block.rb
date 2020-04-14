@@ -16,7 +16,7 @@ test_name "C99971: the `--no-block` command line flag prevents facts from being 
     end
 
     # create the directories
-    on(agent, "mkdir -p '#{facter_conf_default_dir}'")
+    agent.mkdir_p(facter_conf_default_dir)
 
     step "Agent #{agent}: create config file" do
       create_remote_file(agent, facter_conf_default_path, <<-FILE)

@@ -34,7 +34,9 @@ test_name "C98141: config file is loaded when Facter is run from Puppet" do
     end
 
     # create the directories
-    on(agent, "mkdir -p '#{facter_conf_default_dir}' '#{ext_fact_dir1}' '#{ext_fact_dir2}' '#{cust_fact_dir}'")
+    [facter_conf_default_dir, ext_fact_dir1, ext_fact_dir2, cust_fact_dir].each do |dir|
+      agent.mkdir_p(dir)
+    end
 
     step "Agent #{agent}: create facter.conf, external fact, and custom fact files" do
 

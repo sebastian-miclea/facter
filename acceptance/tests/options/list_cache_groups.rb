@@ -51,7 +51,7 @@ test_name "C99970: the `--list-cache-groups` command line flag prints available 
     end
 
     step "external facts groups should be listed only without --no-external-facts" do
-      on(agent, "mkdir -p '#{etc_factsd_dir}'")
+      agent.mkdir_p(etc_factsd_dir)
       create_remote_file(agent, etc_factsd_path, 'test_fact: test_value')
       on(agent, facter("--list-cache-groups")) do |facter_output|
         assert_match(/#{filename}/, facter_output.stdout, "external facts script files should be listed as cacheable")

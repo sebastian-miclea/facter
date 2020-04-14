@@ -40,7 +40,7 @@ test_name 'ttls configured custom facts files creates cache file and reads cache
     config_file = File.join(config_dir, 'facter.conf')
 
     step "Agent #{agent}: create config file" do
-      on(agent, "mkdir -p '#{config_dir}'")
+      agent.mkdir_p(config_dir)
       create_remote_file(agent, config_file, config_data)
       fact_file = File.join(fact_dir, custom_fact_file)
       create_remote_file(agent, fact_file, fact_content)

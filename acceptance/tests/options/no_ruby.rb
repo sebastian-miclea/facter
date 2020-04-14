@@ -27,7 +27,7 @@ EOM
     step "--no-ruby option should disable custom facts" do
       step "Agent #{agent}: create custom fact directory and custom fact" do
         custom_dir = get_user_fact_dir(agent['platform'], on(agent, facter('kernelmajversion')).stdout.chomp.to_f)
-        on(agent, "mkdir -p '#{custom_dir}'")
+        agent.mkdir_p(custom_dir)
         custom_fact = File.join(custom_dir, 'custom_fact.rb')
         create_remote_file(agent, custom_fact, content)
 

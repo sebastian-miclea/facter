@@ -81,7 +81,7 @@ test_name "C64580: Non-root default user external facts directory is searched fo
 
     step "Agent #{agent}: create facts directory (#{user_facts_dir})" do
       on(agent, "rm -rf '#{user_facts_dir}'")
-      on(agent, "mkdir -p '#{user_facts_dir}'")
+      agent.mkdir_p(user_facts_dir)
     end
 
     step "Agent #{agent}: create and resolve a custom fact in #{user_facts_dir}" do
@@ -105,7 +105,7 @@ test_name "C64580: Non-root default user external facts directory is searched fo
 
     step "Agent #{agent}: create facts directory (#{user_puppetlabs_facts_dir})" do
       on(agent, "rm -rf '#{user_puppetlabs_facts_dir}'")
-      on(agent, "mkdir -p '#{user_puppetlabs_facts_dir}'")
+      agent.mkdir_p(user_puppetlabs_facts_dir)
     end
 
     step "Agent #{agent}: create and resolve a custom fact in #{user_puppetlabs_facts_dir}" do

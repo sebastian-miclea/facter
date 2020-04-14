@@ -27,7 +27,7 @@ EOM
     end
 
     step "Agent #{agent}: create facts.d directory and fact" do
-      on(agent, "mkdir -p '#{factsd}'")
+      agent.mkdir_p(factsd)
       create_remote_file(agent, ext_fact, content)
       on(agent, "chmod +x '#{ext_fact}'")
     end

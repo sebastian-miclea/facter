@@ -28,7 +28,7 @@ test_name 'C98163: mountpoints fact should show mounts on tmpfs' do
         atboot  => true,
       }
     FILE
-    on(agent, "mkdir -p #{mount_point}")
+    agent.mkdir_p(mount_point)
     create_remote_file(agent, manifest, manifest_content)
 
     teardown do

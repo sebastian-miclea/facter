@@ -45,7 +45,7 @@ facts : {
     ]
 }
 EOM
-      on(agent, "mkdir -p '#{config_dir}'")
+      agent.mkdir_p(config_dir)
       create_remote_file(agent, config_file, config)
       on(agent, facter("--external-dir '#{external_dir1}' --external-dir '#{external_dir2}' --debug #{fact1} #{fact2}"), :acceptable_exit_codes => 1) do |facter_output|
         assert_match(/ERROR.*Caching is enabled for group "#{external_filename}" while there are at least two external facts files with the same filename/, stderr, 'Expected error message')

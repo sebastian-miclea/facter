@@ -17,7 +17,7 @@ test_name 'C100537: FACTER_ env var should override external fact' do
     end
 
     step "Agent #{agent}: setup external fact" do
-      on(agent, "mkdir -p '#{external_dir}'")
+      agent.mkdir_p(external_dir)
       create_remote_file(agent,
                          fact_file,
                          external_fact_content(agent['platform'], fact_name, fact_value))
