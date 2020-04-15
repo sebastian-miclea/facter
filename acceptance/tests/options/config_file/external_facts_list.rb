@@ -16,7 +16,9 @@ test_name "C99995: config file supports external-dir for multiple fact directori
       external_fact_2 = File.join(external_dir_2, "external_fact#{ext}")
       create_remote_file(agent, external_fact_1, external_fact_content(agent['platform'], 'external_fact_1', 'external_value_1'))
       create_remote_file(agent, external_fact_2, external_fact_content(agent['platform'], 'external_fact_2', 'external_value_2'))
-      on(agent, "chmod +x '#{external_fact_1}' '#{external_fact_2}'")
+      agent.chmod('+x', external_fact_1)
+      agent.chmod('+x', external_fact_2)
+
 
       config_dir = agent.tmpdir("config_dir")
       config_file = File.join(config_dir, "facter.conf")

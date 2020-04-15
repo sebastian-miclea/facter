@@ -22,7 +22,7 @@ test_name "C87571: facter resolves facts in the default facts.d directory" do
     step "Agent #{agent}: setup default external facts directory and fact" do
       agent.mkdir_p(factsd)
       create_remote_file(agent, fact_file, content)
-      on(agent, "chmod +x '#{fact_file}'")
+      agent.chmod('+x', fact_file)
     end
 
     step "agent #{agent}: resolve the external fact" do

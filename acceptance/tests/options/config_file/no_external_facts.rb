@@ -12,7 +12,8 @@ test_name "C99962: config no-external-facts : true does not load external facts"
       ext = get_external_fact_script_extension(agent['platform'])
       external_fact = File.join(external_dir, "external_fact#{ext}")
       create_remote_file(agent, external_fact, external_fact_content(agent['platform'], 'external_fact', 'external_value'))
-      on(agent, "chmod +x '#{external_fact}'")
+      agent.chmod('+x', external_fact)
+
 
       config_dir = agent.tmpdir("config_dir")
       config_file = File.join(config_dir, "facter.conf")

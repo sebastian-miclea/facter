@@ -20,7 +20,7 @@ EOM
       agent.mkdir_p(custom_dir)
       custom_fact = File.join(custom_dir, 'custom_fact.rb')
       create_remote_file(agent, custom_fact, content)
-      on(agent, "chmod +x '#{custom_fact}'")
+      agent.chmod('+x', custom_fact)
 
       teardown do
         agent.rm_rf(custom_fact)

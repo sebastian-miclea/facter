@@ -21,7 +21,7 @@ test_name 'C100537: FACTER_ env var should override external fact' do
       create_remote_file(agent,
                          fact_file,
                          external_fact_content(agent['platform'], fact_name, fact_value))
-      on(agent, "chmod +x '#{fact_file}'")
+      agent.chmod('+x', fact_file)
     end
 
     step "Agent: #{agent}: ensure external fact resolves correctly" do

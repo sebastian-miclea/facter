@@ -19,7 +19,8 @@ test_name "ttls configured cached external execution resolver with text output c
       ext = get_external_fact_script_extension(agent['platform'])
       external_fact = File.join(external_dir, "#{external_cachegroup}#{ext}")
       create_remote_file(agent, external_fact, external_fact_content(agent['platform'], cached_fact_name, initial_fact_value))
-      on(agent, "chmod +x '#{external_fact}'")
+      agent.chmod('+x', external_fact)
+
 
       config_dir = get_default_fact_dir(agent['platform'], on(agent, facter('kernelmajversion')).stdout.chomp.to_f)
       config_file = File.join(config_dir, "facter.conf")

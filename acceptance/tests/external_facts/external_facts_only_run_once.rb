@@ -29,7 +29,7 @@ EOM
     step "Agent #{agent}: create facts.d directory and fact" do
       agent.mkdir_p(factsd)
       create_remote_file(agent, ext_fact, content)
-      on(agent, "chmod +x '#{ext_fact}'")
+      agent.chmod('+x', ext_fact)
     end
 
     step "Agent #{agent}: ensure the fact is only executed once" do

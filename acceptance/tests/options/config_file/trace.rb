@@ -26,7 +26,8 @@ EOM
       agent.mkdir_p(custom_dir)
       custom_fact = File.join(custom_dir, "custom_fact.rb")
       create_remote_file(agent, custom_fact, erroring_custom_fact)
-      on(agent, "chmod +x '#{custom_fact}'")
+      agent.chmod('+x', custom_fact)
+
 
       config_dir = get_default_fact_dir(agent['platform'], on(agent, facter('kernelmajversion')).stdout.chomp.to_f)
       config_file = File.join(config_dir, "facter.conf")

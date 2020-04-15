@@ -12,7 +12,7 @@ test_name "C99974: external fact commandline options --external-dir resolves an 
       ext = get_external_fact_script_extension(agent['platform'])
       external_fact = File.join(external_dir, "external_fact#{ext}")
       create_remote_file(agent, external_fact, external_fact_content(agent['platform'], 'single_fact', 'external_value'))
-      on(agent, "chmod +x '#{external_fact}'")
+      agent.chmod('+x', external_fact)
 
       teardown do
         agent.rm_rf(external_dir)

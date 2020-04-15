@@ -31,7 +31,7 @@ test_name "C99970: the `--list-cache-groups` command line flag prints available 
       ext = get_external_fact_script_extension(agent['platform'])
       external_fact_script = File.join(external_dir, "#{external_filename}#{ext}")
       create_remote_file(agent, external_fact_script, external_fact_content(agent['platform'], "a", "b"))
-      on(agent, "chmod +x '#{external_fact_script}'")
+      agent.chmod('+x', external_fact_script)
 
       external_fact_script_txt = File.join(external_dir, "#{external_filename}.txt")
       create_remote_file(agent, external_fact_script_txt, '')

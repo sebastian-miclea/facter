@@ -33,7 +33,7 @@ EOF
 EOM
       end
       create_remote_file(agent, external_fact, external_fact_content)
-      on(agent, "chmod +x '#{external_fact}'")
+      agent.chmod('+x', external_fact)
 
       config_dir = get_default_fact_dir(agent['platform'], on(agent, facter('kernelmajversion')).stdout.chomp.to_f)
       config_file = File.join(config_dir, "facter.conf")
