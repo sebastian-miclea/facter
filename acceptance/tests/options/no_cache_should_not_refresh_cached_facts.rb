@@ -49,7 +49,7 @@ FILE
       # override cached content
       create_remote_file(agent, cached_fact_file, bad_cached_content)
       # update the modify time on the new cached fact to prompt a refresh
-      on(agent, "touch -mt 0301010000 '#{cached_fact_file}'")
+      agent.touch(cached_fact_file, '0301010000')
 
       on(agent, facter("--no-cache")) do |facter_output|
         assert_no_match(/caching/, facter_output.stderr, "facter should not have tried to refresh the cache")

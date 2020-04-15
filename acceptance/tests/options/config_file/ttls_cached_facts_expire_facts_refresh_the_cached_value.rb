@@ -47,7 +47,7 @@ EOM
         on(agent, facter(""))
         create_remote_file(agent, cached_fact_file, cached_fact_content)
         # Change the modified date to sometime in the far distant past
-        on(agent, "touch -mt 198001010000 '#{cached_fact_file}'")
+        agent.touch(cached_fact_file, '198001010000')
         # Force facter to recache
         on(agent, facter("#{cached_factname}"))
 

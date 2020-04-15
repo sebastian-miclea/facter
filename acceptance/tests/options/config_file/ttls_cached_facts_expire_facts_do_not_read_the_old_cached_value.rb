@@ -47,7 +47,7 @@ EOM
         on(agent, facter(""))
         create_remote_file(agent, cached_fact_file, cached_fact_content)
         # Change the modified date to sometime in the far distant past
-        on(agent, "touch -mt 198001010000 '#{cached_fact_file}'")
+        agent.touch(cached_fact_file, '198001010000')
 
         on(agent, facter("#{cached_factname}")) do |facter_output|
           assert_not_match(/#{cached_fact_value}/, facter_output.stdout, "Expected fact to not match the cached fact file")
