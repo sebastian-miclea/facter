@@ -13,14 +13,14 @@ Many of the command line options can also be set via the HOCON config file. This
 
 OPTIONS
 -------
-<% @Facter::Cli.class_options.each do |name, option| -%><% next if option.hide%>
+<% Facter::Cli.class_options.each do |name, option| -%><% next if option.hide%>
   * `<%= option.aliases[0] + '`, `' if option.aliases.any? %>--<%= 'no-' if negate_options.include?(name.to_s)%><%= name.to_s.gsub('_','-') %>`:
 
     <%= option.description %>
 
 <% end -%>
 
-<% @Facter::Cli.commands.select { |_k, command_class| command_class.instance_of?(Thor::Command) }.each do |_, command| -%>
+<% Facter::Cli.commands.select { |_k, command_class| command_class.instance_of?(Thor::Command) }.each do |_, command| -%>
   * `<%= command.usage %>`:
 
     <%= command.description %>
